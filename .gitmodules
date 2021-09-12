@@ -1,5 +1,5 @@
-[submodule "vendor/vendor"]
-	path = vendor/vendor
+[submodule "vendor/glfw"]
+	path = vendor/glfw
 	url = https://github.com/glfw/glfw.git
 [submodule "vendor/spdlog"]
 	path = vendor/spdlog
