@@ -35,5 +35,5 @@ add_subdirectory(../../vendor/spdlog ${CMAKE_CURRENT_BINARY_DIR}/spdlog)
 target_link_libraries(${PROJECT_NAME} PRIVATE spdlog)
 
 add_subdirectory(../../custom_glad/glad ${CMAKE_CURRENT_BINARY_DIR}/custom_glad/glad)
-target_link_libraries(${PROJECT_NAME} PRIVATE custom_glad)
+target_link_libraries(${PROJECT_NAME} PRIVATE glad)
 
