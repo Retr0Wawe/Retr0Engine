@@ -26,7 +26,7 @@ namespace Retr0Engine
 
 	int Window::init()
 	{
-        LOG_INFO("Initalize window with: [title->{0}]; [window resolution-> {1}*{2}]", w_title, w_width, w_heigth);    
+        LOG_INFO("Initalize window with: [title->{0}]; [window resolution->{1}*{2}]", w_title, w_width, w_heigth);    
 
         if (!GLFW_init) {
             if (!glfwInit()) {

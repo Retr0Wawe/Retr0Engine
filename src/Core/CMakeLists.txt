@@ -9,7 +9,7 @@ set(PUBLIC_INCLUDES
 
 set(PRIVATE_INCLUDES
 	includes/private_includes/Window.hpp
-    )
+    	)
 
 set(PRIVATE_SOURCES
 	src/Application.cpp
@@ -34,6 +34,5 @@ target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
 add_subdirectory(../../vendor/spdlog ${CMAKE_CURRENT_BINARY_DIR}/spdlog)
 target_link_libraries(${PROJECT_NAME} PRIVATE spdlog)
 
-add_subdirectory(../../custom_glad/glad ${CMAKE_CURRENT_BINARY_DIR}/custom_glad/glad)
+add_subdirectory(../../vendor/glad ${CMAKE_CURRENT_BINARY_DIR}/glad)
 target_link_libraries(${PROJECT_NAME} PRIVATE glad)
-
