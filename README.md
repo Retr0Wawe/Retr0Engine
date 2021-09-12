@@ -1,3 +1,3 @@
 # Retr0Engine
-Simple Engine for creating games
+Simple graphics engine for modeling objects
 ### download: git clone https://github.com/Retr0Wawe/Retr0Engine --recursive
