@@ -34,6 +34,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
 add_subdirectory(../../vendor/spdlog ${CMAKE_CURRENT_BINARY_DIR}/spdlog)
 target_link_libraries(${PROJECT_NAME} PRIVATE spdlog)
 
-add_subdirectory(../../vendor/glad ${CMAKE_CURRENT_BINARY_DIR}/glad)
-target_link_libraries(${PROJECT_NAME} PRIVATE glad)
+add_subdirectory(../../custom_glad ${CMAKE_CURRENT_BINARY_DIR}/custom_glad/glad)
+target_link_libraries(${PROJECT_NAME} PRIVATE custom_glad)
 
