@@ -3,19 +3,16 @@
 
 #include "Window.hpp"
 #include "Log.hpp"
+#include "Callback.hpp"
 
 namespace Retr0Engine
 {
     static bool GLFW_init = false;
 
     Window::Window(const char* _title, const unsigned int _width, const unsigned int _heigth) :
-        w_title(_title), w_width(_width), w_heigth(_heigth), w_pWindow(nullptr)
+    w_title(_title), w_width(_width), w_heigth(_heigth), w_pWindow(nullptr)
 	{
-        if (init() != 0)
-        {
-            shutdown();
-            exit(1);
-        }
+        init();
 	}
 
 	Window::~Window()
@@ -50,6 +47,12 @@ namespace Retr0Engine
             return -3;
         }
 
+        glfwSetKeyCallback(w_pWindow, key_callback);
+        glfwSetMouseButtonCallback(w_pWindow, mouse_button_callback);
+        glfwSetCursorPosCallback(w_pWindow, cursor_position_callback);
+        glfwSetWindowCloseCallback(w_pWindow, window_close_callback);
+        glfwSetWindowSizeCallback(w_pWindow, window_size_callback);
+
         return 0;
 	}
 
@@ -63,6 +66,7 @@ namespace Retr0Engine
 	{
         glClearColor(1, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
+
         glfwSwapBuffers(w_pWindow);
         glfwPollEvents();
 	}

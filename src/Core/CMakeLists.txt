@@ -5,18 +5,20 @@ project(Retr0EngineCore LANGUAGES CXX)
 set(PUBLIC_INCLUDES
 	includes/Application.hpp
 	includes/Log.hpp
+	includes/Callback.hpp
 	)
 
 set(PRIVATE_INCLUDES
 	includes/private_includes/Window.hpp
-    	)
+    )
 
 set(PRIVATE_SOURCES
 	src/Application.cpp
 	src/Window.cpp
+	src/Callback.cpp
 	)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 add_library(${PROJECT_NAME} STATIC
 	${PUBLIC_INCLUDES}

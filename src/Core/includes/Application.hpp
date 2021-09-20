@@ -5,10 +5,12 @@
 
 namespace Retr0Engine
 {
+	inline bool a_Close_window = false;
+
 	class Application
 	{
 	private:
-		std::unique_ptr<class Window> pWindow; 
+		std::unique_ptr<class Window> pWindow;
 	public:
 		Application(); /*конструктор нужно определять в cpp файле вместе с инклудами для того чтобы 
 						иметь доступ к функциоаналу импортируемых библиотек*/

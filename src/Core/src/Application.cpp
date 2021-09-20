@@ -18,10 +18,10 @@ namespace Retr0Engine
     {
         pWindow = std::make_unique<Window>(title, w_weidth, w_heigth);
 
-        while (pWindow)
+        while (!a_Close_window)
         {
             pWindow->on_update();
-            on_update();
+            this->on_update();
         }
 
         return -1;
