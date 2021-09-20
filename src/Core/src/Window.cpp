@@ -47,14 +47,19 @@ namespace Retr0Engine
             return -3;
         }
 
-        glfwSetKeyCallback(w_pWindow, key_callback);
-        glfwSetMouseButtonCallback(w_pWindow, mouse_button_callback);
-        glfwSetCursorPosCallback(w_pWindow, cursor_position_callback);
-        glfwSetWindowCloseCallback(w_pWindow, window_close_callback);
-        glfwSetWindowSizeCallback(w_pWindow, window_size_callback);
+        callbacks_init();
 
         return 0;
 	}
+
+    void Window::callbacks_init() const
+    {
+        glfwSetKeyCallback(w_pWindow, key_callback);                    //key callback
+        glfwSetMouseButtonCallback(w_pWindow, mouse_button_callback);   //mouse button callback 
+        glfwSetCursorPosCallback(w_pWindow, cursor_position_callback);  //cursor position callback
+        glfwSetWindowCloseCallback(w_pWindow, window_close_callback);   //window close callback
+        glfwSetWindowSizeCallback(w_pWindow, window_size_callback);     //window size callback
+    }
 
 	void Window::shutdown() const
 	{
@@ -64,9 +69,7 @@ namespace Retr0Engine
 
 	void Window::on_update() const
 	{
-        glClearColor(1, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
-
         glfwSwapBuffers(w_pWindow);
         glfwPollEvents();
 	}

@@ -11,7 +11,7 @@ namespace Retr0Engine
 
     Application::~Application()
     {
-        LOG_INFO("Closing application.");
+        LOG_INFO("Closing application...");
     }
 
     int Application::start(const char* title, unsigned int w_weidth, unsigned int w_heigth)

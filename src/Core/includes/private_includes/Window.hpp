@@ -29,6 +29,8 @@ namespace Retr0Engine
 		unsigned int get_heigth() const { return w_heigth; }
 
 		virtual void on_update() const;
+
+		void callbacks_init() const;
 	};
 }
 
