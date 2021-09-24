@@ -10,8 +10,7 @@ namespace Retr0Engine
 	#define LOG_WARN(...)		
 	#define LOG_ERROR(...)		
 	#define LOG_CRITICAL(...)	
-	#define LOG_DEBUG(...)	
-
+	#define LOG_DEBUG(...)
  #else 
 	#define LOG_INFO(...)		spdlog::info(__VA_ARGS__)
 	#define LOG_WARN(...)		spdlog::warn(__VA_ARGS__)

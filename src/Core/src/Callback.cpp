@@ -7,27 +7,11 @@ namespace Retr0Engine
         if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
            a_Close_window = true;
         }
-
-        if (key == GLFW_KEY_A && action == GLFW_PRESS) {
-            glClearColor(1, 0, 1, 0);
-        }
-
-        if (key == GLFW_KEY_D && action == GLFW_PRESS) {
-            glClearColor(1, 1, 0, 1);
-        }
     }
 
     void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
     {
-        if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
-            LOG_INFO("[Button left pressed]");
-            glClearColor(1, 0, 0, 1);
-        }
 
-        if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS) {
-            LOG_INFO("[Button right pressed]");
-            glClearColor(0, 0, 1, 0);
-        }
     }
 
     void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)

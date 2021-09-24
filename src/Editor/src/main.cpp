@@ -17,7 +17,7 @@ public:
 
 	void on_update() override 
 	{
-		//std::cout << "Update: " << count++ << std::endl;
+		//std::cout << "LOl" << std::endl;
 	}
 };
 
@@ -25,5 +25,5 @@ int main()
 {
 	auto app = std::make_unique<MyApp>();
 
-	return app->start("Retr0Engine", 500, 600);
+	return app->start("Retr0Engine", 1000, 900);
 }

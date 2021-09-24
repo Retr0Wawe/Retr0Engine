@@ -10,6 +10,7 @@ namespace Retr0Engine
 		unsigned int w_heigth;
 		const char* w_title;
 		struct GLFWwindow* w_pWindow;
+		float w_background[4] = { 0.f, 0.f, 0.f };
 	private:
 		int init();
 		void shutdown() const;
@@ -23,12 +24,12 @@ namespace Retr0Engine
 
 		Window& operator=(const Window&) = delete;
 		Window& operator=(const Window&&) = delete;
-
+	public:
 		unsigned int get_width() const { return w_width; }
 
 		unsigned int get_heigth() const { return w_heigth; }
 
-		virtual void on_update() const;
+		virtual void on_update();
 
 		void callbacks_init() const;
 	};
