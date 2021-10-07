@@ -3,6 +3,8 @@
 
 namespace Retr0Engine
 {
+	inline int result_code = -1;
+
 	class Window
 	{
 	private:
@@ -29,7 +31,7 @@ namespace Retr0Engine
 
 		unsigned int get_heigth() const { return w_heigth; }
 
-		virtual void on_update();
+		void on_update();
 
 		void callbacks_init() const;
 	};

@@ -1,5 +1,8 @@
 #include "Callback.hpp"
 
+#include "Application.hpp"
+#include "Log.hpp"
+
 namespace Retr0Engine
 {
     void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -11,7 +14,7 @@ namespace Retr0Engine
 
     void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
     {
-
+        
     }
 
     void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)

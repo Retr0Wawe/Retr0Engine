@@ -12,8 +12,8 @@ namespace Retr0Engine
 	private:
 		std::unique_ptr<class Window> pWindow;
 	public:
-		Application(); /*конструктор нужно определять в cpp файле вместе с инклудами для того чтобы 
-						иметь доступ к функциоаналу импортируемых библиотек*/
+		Application();		/*конструктор нужно определять в cpp файле вместе с инклудами для того чтобы 
+							иметь доступ к функциоаналу импортируемых библиотек*/
 		virtual ~Application();
 
 		Application(const Application&) = delete;

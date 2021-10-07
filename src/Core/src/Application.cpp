@@ -18,7 +18,7 @@ namespace Retr0Engine
     {
         pWindow = std::make_unique<Window>(title, w_weidth, w_heigth);
 
-        while (!a_Close_window)
+        while (!a_Close_window && !result_code)
         {
             pWindow->on_update();
             this->on_update();
@@ -29,6 +29,6 @@ namespace Retr0Engine
 
     void Application::on_update()
     {
-        LOG_INFO("Base func on_update");
+       
     }
 }

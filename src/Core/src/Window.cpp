@@ -1,9 +1,9 @@
 ﻿#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include <imgui/imgui.h>
-#include <imgui/backends/imgui_impl_opengl3.h>
-#include <imgui/backends/imgui_impl_glfw.h>
+#include <imgui.h>
+#include <backends/imgui_impl_opengl3.h>
+#include <backends/imgui_impl_glfw.h>
 
 #include "Window.hpp"
 #include "Log.hpp"
@@ -11,12 +11,32 @@
 
 namespace Retr0Engine
 {
+    float vertices[] = {
+    -0.5f, -0.5f, 0.0f,
+     0.5f, -0.5f, 0.0f,
+     0.0f,  0.5f, 0.0f
+    };
+
+    const char* vertex_shader_source = "#version 330 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "void main()\n"
+        "{\n"
+        "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+        "}\0";
+
+    const char* fragment_shader_source = "#version 330 core\n"
+        "out vec4 FragColor;\n"
+        "void main()\n"
+        "{\n"
+        "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+        "}\n\0";
+
     Window::Window(const char* _title, const unsigned int _width, const unsigned int _heigth) :
     w_title(_title), w_width(_width), w_heigth(_heigth), w_pWindow(nullptr)
 	{
-        int result_code = init();
-
+        result_code = init();
         IMGUI_CHECKVERSION();
+
         ImGui::CreateContext();
         ImGui_ImplOpenGL3_Init();
         ImGui_ImplGlfw_InitForOpenGL(w_pWindow, true);
@@ -37,6 +57,10 @@ namespace Retr0Engine
             return -1;
         }
         
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
         w_pWindow = glfwCreateWindow(w_width, w_heigth, w_title, NULL, NULL);
 
         if (!w_pWindow) {
@@ -87,16 +111,98 @@ namespace Retr0Engine
         ImGui_ImplGlfw_NewFrame();          //handling Imgui clicks with glfw to interact with the window or widgets
 
         ImGui::NewFrame();                 
+            
+        ImGui::Begin("Retr0Gui");        //init imgui window
 
-        ImGui::Begin("Retr0Gui");   //init imgui window
-
-        ImGui::ColorEdit4("Background color", w_background);    //imgui widget
+        ImGui::ColorEdit4("Background color", w_background);     //imgui widget
 
         ImGui::End();
 
         ImGui::Render();
 
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        /// 
+        unsigned int vbo;
+        unsigned int vertex_shader;
+
+        glGenBuffers(1, &vbo);
+
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+        vertex_shader = glCreateShader(GL_VERTEX_SHADER);
+        
+        glShaderSource(vertex_shader, 1, &vertex_shader_source, NULL);
+
+        int succes;
+        char infolog[512];
+
+        glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &succes);
+
+        if (succes != 0) {
+            glGetShaderInfoLog(vertex_shader, 512, NULL, infolog);
+            LOG_CRITICAL("Shader compile error! Error: {0}", infolog);
+        }
+
+        unsigned int fragment_shader;
+
+        fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
+        
+        glShaderSource(fragment_shader, 1, &fragment_shader_source, NULL);
+        
+        glCompileShader(fragment_shader);
+
+        unsigned int shaderProgram;
+
+        shaderProgram = glCreateProgram();
+
+        glAttachShader(shaderProgram, vertex_shader);
+        glAttachShader(shaderProgram, fragment_shader);
+        glLinkProgram(shaderProgram);
+
+        glGetProgramiv(shaderProgram, GL_LINK_STATUS, &succes);
+
+        if (succes != 0) {
+            glGetProgramInfoLog(shaderProgram, 512, NULL, infolog);
+            LOG_CRITICAL("Shader link error! Error: {0}", infolog);
+        }
+
+        glUseProgram(shaderProgram);
+
+        glDeleteShader(vertex_shader);
+        glDeleteShader(fragment_shader);
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(0);
+
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(0);
+
+        glUseProgram(shaderProgram);
+
+        unsigned int vao;
+
+        glGenVertexArrays(1, &vao);
+
+        glBindVertexArray(vao);
+
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+
+        glEnableVertexAttribArray(0);
+
+        glUseProgram(shaderProgram);
+
+        glBindVertexArray(vao);
+
+        glUseProgram(shaderProgram);
+        glBindVertexArray(vao);
+        glDrawArrays(GL_TRIANGLES, 0, 12);
 
         glfwSwapBuffers(w_pWindow);
         glfwPollEvents();
