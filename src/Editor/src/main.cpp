@@ -1,10 +1,11 @@
 #include <iostream>
 #include <memory>
 #include <Application.hpp>
+#include <utils/Retr0Str.hpp> 
 
 using namespace Retr0Engine;
 
-class MyApp : public Application
+class MyApp : Application
 {
 private:
 	int count;
@@ -33,4 +34,4 @@ int main()
 	auto app = std::make_unique<MyApp>();
 
 	return app->start("Retr0Engine", 1000, 900);
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+}

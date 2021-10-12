@@ -77,7 +77,6 @@ namespace Retr0Engine
         }
 
         callbacks_init();
-
         return 0;
 	}
 

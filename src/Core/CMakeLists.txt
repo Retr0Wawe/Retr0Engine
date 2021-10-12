@@ -9,10 +9,9 @@ set(PUBLIC_INCLUDES
 	includes/Log.hpp
 	includes/Callback.hpp
 	includes/Shader.hpp
-)
-
-set(PRIVATE_INCLUDES
-	includes/private_includes/Window.hpp
+	includes/Window.hpp
+	includes/utils/Retr0Str.hpp
+	includes/utils/Retr0Ptr.hpp
 )
 
 set(PRIVATE_SOURCES
@@ -20,12 +19,13 @@ set(PRIVATE_SOURCES
 	src/Window.cpp
 	src/Callback.cpp
 	src/Shader.cpp
+	src/utils/Retr0Str.cpp
+	src/utils/Retr0Ptr.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC
 	${PUBLIC_INCLUDES}
 	${PRIVATE_SOURCES}
-	${PRIVATE_INCLUDES}
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE includes/private_includes)

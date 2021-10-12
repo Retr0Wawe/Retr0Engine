@@ -1,5 +1,5 @@
 #ifndef APP_H	 //большенство компиляторов поддерживают именно данный header quard, потому что не требует дополнительных директив по типу #pragma once
-#define APP_H
+#define APP_H	 
 
 #include <memory>
 
