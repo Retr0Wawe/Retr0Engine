@@ -31,7 +31,17 @@ public:
 
 int main()
 {
-	auto app = std::make_unique<MyApp>();
+	//auto app = std::make_unique<MyApp>();
 
-	return app->start("Retr0Engine", 1000, 900);
+	//return app->start("Retr0Engine", 1000, 900);
+
+	Retr0Str str = "Lowe";
+	Retr0Str lower = "Lowerd";
+	Retr0Str a;
+
+	if (str > lower) {
+		std::cout << "FUCCl";
+	}
+
+	std::cout << a.data() << std::endl;
 }

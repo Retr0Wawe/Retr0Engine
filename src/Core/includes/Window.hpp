@@ -8,8 +8,7 @@ namespace Retr0Engine
 	class Window
 	{
 	private:
-		unsigned int w_width;
-		unsigned int w_heigth;
+		unsigned int w_width, w_heigth;
 		const char* w_title;
 		struct GLFWwindow* w_pWindow;
 		float w_background[4] = { 0.f, 0.f, 0.f };
@@ -31,9 +30,9 @@ namespace Retr0Engine
 
 		unsigned int get_heigth() const { return w_heigth; }
 
-		void on_update();
-
 		void callbacks_init() const;
+
+		void on_update();
 	};
 }
 

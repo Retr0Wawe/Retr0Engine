@@ -1,4 +1,4 @@
-#ifndef APP_H	 //большенство компиляторов поддерживают именно данный header quard, потому что не требует дополнительных директив по типу #pragma once
+#ifndef APP_H	 
 #define APP_H	 
 
 #include <memory>
@@ -12,8 +12,8 @@ namespace Retr0Engine
 	private:
 		std::unique_ptr<class Window> pWindow;
 	public:
-		Application();		/*конструктор нужно определять в cpp файле вместе с инклудами для того чтобы 
-							иметь доступ к функциоаналу импортируемых библиотек*/
+		Application();		
+
 		virtual ~Application();
 
 		Application(const Application&) = delete;
