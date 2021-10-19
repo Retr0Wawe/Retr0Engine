@@ -4,23 +4,35 @@
 
 namespace Retr0Engine
 {
-	Retr0Str::Retr0Str(): str(new char()), length(0)
+	Retr0Str::Retr0Str(): str(new char[0]()), length(0) //попробовать добавить nullтерминатор - a = new char[1]; a[1] = '\0';
 	{	}
 
-	Retr0Str::Retr0Str(const char* _str) : length(strlen(_str) + 1)
+	Retr0Str::Retr0Str(const char* _str)
 	{
-		str = new char[length]();
-		str[length - 1] = '\0';
-		strcpy(str, _str);
+		if (_str != nullptr) {
+			length = strlen(_str) + 1;
+			str = new char[length]();
+			str[length - 1] = '\0';
+			strcpy(str, _str);
+		}
+		else {
+			length = 0;
+			str = new char[0]();
+		}
 	}
 
 	Retr0Str::Retr0Str(const Retr0Str& a)
 	{
-		length = a.len() + 1;
-		str = new char[length]();
-
-		str[length - 1] = '\0';
-		strcpy(str, a.str);
+		if (a.str != nullptr && a.length != 0) {
+			length = a.length;
+			str = new char[length]();
+			str[length - 1] = '\0';
+			strcpy(str, a.str);
+		}
+		else {
+			length = 0;
+			str = new char[0]();
+		}
 	}
 
 	Retr0Str::~Retr0Str()
@@ -33,7 +45,7 @@ namespace Retr0Engine
 	{
 		if (this != &a) {
 			delete[] str;
-			length = a.len() + 1;
+			length = a.length;
 
 			str = new char[length]();
 			str[length - 1] = '\0';
@@ -45,7 +57,7 @@ namespace Retr0Engine
 
 	Retr0Str& Retr0Str::operator+=(const Retr0Str& a)
 	{
-		length = (length + a.length) + 1;
+		length = (length + a.length);
 		char* temp = new char[length];
 		temp[length - 1] = '\0';
 

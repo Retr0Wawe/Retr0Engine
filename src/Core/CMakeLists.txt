@@ -10,8 +10,7 @@ set(PUBLIC_INCLUDES
 	includes/Callback.hpp
 	includes/Shader.hpp
 	includes/Window.hpp
-	includes/utils/Retr0Str.hpp
-	includes/utils/Retr0Ptr.hpp
+	includes/Utils.hpp
 )
 
 set(PRIVATE_SOURCES
@@ -20,7 +19,6 @@ set(PRIVATE_SOURCES
 	src/Callback.cpp
 	src/Shader.cpp
 	src/utils/Retr0Str.cpp
-	src/utils/Retr0Ptr.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC

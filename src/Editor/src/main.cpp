@@ -1,7 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <Application.hpp>
-#include <utils/Retr0Str.hpp> 
+#include <Utils.hpp>
 
 using namespace Retr0Engine;
 
@@ -35,13 +35,8 @@ int main()
 
 	//return app->start("Retr0Engine", 1000, 900);
 
-	Retr0Str str = "Lowe";
-	Retr0Str lower = "Lowerd";
-	Retr0Str a;
-
-	if (str > lower) {
-		std::cout << "FUCCl";
-	}
-
+	Retr0Str Lower = nullptr;
+	Retr0Str a = Lower;
+	Retr0Str b;
 	std::cout << a.data() << std::endl;
 }

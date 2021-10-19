@@ -4,18 +4,28 @@
 namespace Retr0Engine
 {
 	template <class T>
-	class Retr0Ptr
+	class Retr0Unique_Ptr
 	{
-	protected:
+	private:
 		T* ptr;
 	public:
-		Retr0Ptr(T _ptr);
+		Retr0Unique_Ptr(T* _ptr = nullptr) : ptr(_ptr)
+		{	}
 
-		~Retr0Ptr();
+		~Retr0Unique_Ptr()
+		{
+			delete ptr;
+		}
 
-		T& operator->() const;
+		T& operator->() const
+		{
+			return ptr;
+		}
 
-		T& operator*() const;
+		T& operator*() const
+		{
+			return *ptr;
+		}
 	};
 }
 
