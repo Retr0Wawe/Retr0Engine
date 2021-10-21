@@ -4,34 +4,38 @@
 
 namespace Retr0Engine
 {
-	Retr0Str::Retr0Str(): str(new char[0]()), length(0) //попробовать добавить nullтерминатор - a = new char[1]; a[1] = '\0';
-	{	}
+	Retr0Str::Retr0Str()
+	{
+		length = 0;
+		str = new char[1];
+		str[0] = '\0';
+	}
 
-	Retr0Str::Retr0Str(const char* _str)
+	Retr0Str::Retr0Str(const char* _str)	//const char* str сам ставит в конце null terminator, и поэтому при new не нужно делать это вручную
 	{
 		if (_str != nullptr) {
 			length = strlen(_str) + 1;
 			str = new char[length]();
-			str[length - 1] = '\0';
 			strcpy(str, _str);
 		}
 		else {
 			length = 0;
-			str = new char[0]();
+			str = new char[1]();
+			str[0] = '\0';
 		}
 	}
 
 	Retr0Str::Retr0Str(const Retr0Str& a)
 	{
-		if (a.str != nullptr && a.length != 0) {
-			length = a.length;
+		if (a.str != nullptr) {
+			length = a.length + 1;
 			str = new char[length]();
-			str[length - 1] = '\0';
 			strcpy(str, a.str);
 		}
 		else {
 			length = 0;
-			str = new char[0]();
+			str = new char[1]();
+			str[0] = '\0';
 		}
 	}
 
@@ -45,10 +49,9 @@ namespace Retr0Engine
 	{
 		if (this != &a) {
 			delete[] str;
-			length = a.length;
+			length = a.length + 1;
 
 			str = new char[length]();
-			str[length - 1] = '\0';
 			strcpy(str, a.str);
 		}
 
@@ -57,9 +60,8 @@ namespace Retr0Engine
 
 	Retr0Str& Retr0Str::operator+=(const Retr0Str& a)
 	{
-		length = (length + a.length);
+		length = (length + a.length) + 1;
 		char* temp = new char[length];
-		temp[length - 1] = '\0';
 
 		strcpy(temp, str);
 		strcat(temp, a.str);
