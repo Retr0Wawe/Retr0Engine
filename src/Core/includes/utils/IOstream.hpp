@@ -10,13 +10,11 @@ namespace Retr0Engine
 	protected:
 		std::fstream file;
 	public:
-		IOstream()
-		{	}
+		IOstream();
 
 		IOstream(const char* path);
 
-		~IOstream()
-		{	}
+		~IOstream();
 
 		virtual std::string read_data() const;
 

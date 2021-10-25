@@ -29,7 +29,10 @@ public:
 
 int main()
 {
-	auto app = std::make_unique<MyApp>();
+	//auto app = std::make_unique<MyApp>();
 
-	return app->start("Retr0Engine", 1000, 900);
+	//return app->start("Retr0Engine", 1000, 900);
+	IOstream low("C:\\Users\\Retr0Cake\\Desktop\\bot_api.txt");
+
+	std::cout << low.read_data();
 }
