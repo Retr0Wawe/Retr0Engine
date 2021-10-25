@@ -4,6 +4,17 @@ project(Retr0EngineCore LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(UTILS_INCLUDES
+	includes/utils/IOstream.hpp
+	includes/utils/Retr0Str.hpp
+	includes/utils/Retr0Ptr.hpp
+)
+
+set(UTILS_SOURCES
+	src/utils/IOstream.cpp
+	src/utils/Retr0Str.cpp
+)
+
 set(PUBLIC_INCLUDES
 	includes/Application.hpp
 	includes/Log.hpp
@@ -18,10 +29,11 @@ set(PRIVATE_SOURCES
 	src/Window.cpp
 	src/Callback.cpp
 	src/Shader.cpp
-	src/utils/Retr0Str.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC
+	${UTILS_INCLUDES}
+	${UTILS_SOURCES}
 	${PUBLIC_INCLUDES}
 	${PRIVATE_SOURCES}
 )
