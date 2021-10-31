@@ -1,6 +1,8 @@
 #ifndef R_STR
 #define R_STR
 
+#include <ostream>
+
 namespace Retr0Engine
 {
 	class Retr0Str
@@ -34,6 +36,10 @@ namespace Retr0Engine
 		friend bool operator!=(const Retr0Str&, const Retr0Str&);
 
 		friend bool operator==(const Retr0Str&, const Retr0Str&);
+
+		friend std::ostream& operator<<(std::ostream& out, const Retr0Str&);
+
+		friend std::istream& operator>>(std::istream& inp, const Retr0Str&);
 
 		char& operator[](int i) const;
 

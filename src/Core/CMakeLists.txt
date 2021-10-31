@@ -5,13 +5,11 @@ project(Retr0EngineCore LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 
 set(UTILS_INCLUDES
-	includes/utils/IOstream.hpp
 	includes/utils/Retr0Str.hpp
 	includes/utils/Retr0Ptr.hpp
 )
 
 set(UTILS_SOURCES
-	src/utils/IOstream.cpp
 	src/utils/Retr0Str.cpp
 )
 

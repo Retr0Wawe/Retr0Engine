@@ -107,6 +107,11 @@ namespace Retr0Engine
 		return (a.length == b.length) && (strcmp(a.str, b.str)) == 0;
 	}
 
+	std::ostream& operator<<(std::ostream& out, const Retr0Str& b)
+	{
+		return out << b.str;
+	}
+
 	char& Retr0Str::operator[](int i) const
 	{
 		return str[i];

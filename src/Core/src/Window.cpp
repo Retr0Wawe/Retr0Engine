@@ -8,6 +8,7 @@
 #include "Window.hpp"
 #include "Log.hpp"
 #include "Callback.hpp"
+#include "Shader.hpp"
 
 namespace Retr0Engine
 {
@@ -130,7 +131,14 @@ namespace Retr0Engine
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
         vertex_shader = glCreateShader(GL_VERTEX_SHADER);
         
-        glShaderSource(vertex_shader, 1, &vertex_shader_source, NULL);
+        Shader shaders("shader.frag", "shader.vert");
+
+        const char* vertex_code = shaders.vertex_code.c_str();
+        const char* fragment_code = shaders.fragment_code.c_str();
+
+        std::cout << vertex_code << std::endl;
+
+        glShaderSource(vertex_shader, 1, &vertex_code, NULL);
 
         int succes;
         char infolog[512];
@@ -146,7 +154,7 @@ namespace Retr0Engine
 
         fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
         
-        glShaderSource(fragment_shader, 1, &fragment_shader_source, NULL);
+        glShaderSource(fragment_shader, 1, &fragment_code, NULL);
         
         glCompileShader(fragment_shader);
 
