@@ -20,6 +20,7 @@ set(PUBLIC_INCLUDES
 	includes/Shader.hpp
 	includes/Window.hpp
 	includes/Utils.hpp
+	includes/ImGuiLayer.hpp
 )
 
 set(PRIVATE_SOURCES
@@ -27,6 +28,7 @@ set(PRIVATE_SOURCES
 	src/Window.cpp
 	src/Callback.cpp
 	src/Shader.cpp
+	src/ImGuiLayer.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC

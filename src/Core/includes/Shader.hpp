@@ -8,7 +8,7 @@ namespace Retr0Engine
 {
 	class Shader
 	{
-	public:					//потом сделать private, так как создание шейдеров будет проходить внутри методов класса
+	public:						//потом сделать private, так как создание шейдеров будет проходить внутри методов класса
 		std::string vertex_code;
 		std::string fragment_code;
 	public:

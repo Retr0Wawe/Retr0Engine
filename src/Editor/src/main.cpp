@@ -17,9 +17,7 @@ public:
 
 	int start(const char* title, unsigned int w_weidth, unsigned int w_heigth) override
 	{
-		Application::start(title, w_weidth, w_heigth);
-
-		return -1;
+		return Application::start(title, w_weidth, w_heigth);
 	}
 	
 	void on_update() override 

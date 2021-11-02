@@ -29,6 +29,6 @@ namespace Retr0Engine
 
     void Application::on_update()
     {
-       
+        
     }
 }

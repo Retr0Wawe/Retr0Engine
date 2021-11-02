@@ -1,11 +1,13 @@
 #ifndef WIN_HPP
 #define WIN_HPP
 
+#include "ImGuiLayer.hpp"
+
 namespace Retr0Engine
 {
 	inline int result_code = -1;
 
-	class Window
+	class Window : ImGuiLayer
 	{
 	private:
 		unsigned int w_width, w_heigth;
@@ -31,6 +33,8 @@ namespace Retr0Engine
 		unsigned int get_heigth() const { return w_heigth; }
 
 		void callbacks_init() const;
+
+		void gui_update() override;
 
 		void on_update();
 	};
