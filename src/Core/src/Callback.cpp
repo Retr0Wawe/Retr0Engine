@@ -19,7 +19,7 @@ namespace Retr0Engine
 
     void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
     {
-        LOG_INFO("[Cursor position: {0}*{1}]", xpos, ypos);
+        //LOG_INFO("[Cursor position: {0}*{1}]", xpos, ypos);
     }
 
     void window_size_callback(GLFWwindow* window, int width, int height)

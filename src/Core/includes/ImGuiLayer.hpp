@@ -26,9 +26,9 @@ namespace Retr0Engine
 
 		virtual void gui_destroy() const;
 
-		virtual void gui_update();
-
 		virtual void pre_render() const;
+
+		virtual void gui_update();
 
 		virtual void post_render() const;
 	};

@@ -1,4 +1,5 @@
 #include "ImGuiLayer.hpp"
+#include "Log.hpp"
 
 namespace Retr0Engine
 {

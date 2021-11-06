@@ -2,16 +2,22 @@
 #define SHADER_CPP
 
 #include <iostream>
-#include "utils/Retr0Str.hpp"
+#include <glad/glad.h>
 
 namespace Retr0Engine
 {
 	class Shader
 	{
-	public:						//потом сделать private, так как создание шейдеров будет проходить внутри методов класса
-		std::string vertex_code;
-		std::string fragment_code;
+	private:						//потом сделать private, так как создание шейдеров будет проходить внутри методов класса
+		const char* vertex_code;
+		const char* fragment_code;
+		unsigned int shader_id;
+		bool is_compile;
 	public:
+		Shader(const char* vertex_path, const char* fragment_path);
+
+		~Shader();
+
 		Shader() = delete;
 
 		Shader(const Shader&) = delete;
@@ -19,12 +25,16 @@ namespace Retr0Engine
 
 		Shader& operator=(const Shader&) = delete;
 		Shader& operator=(const Shader&&) = delete;
-
-		Shader(const char* vertex_path, const char* fragment_path);
-
-		~Shader();
 	public:
 		void get_shaders_code() const;
+
+		bool create_shader(const char* source, const GLenum shader_type, GLuint& shader_id);
+
+		bool is_compiled() const;
+
+		void bind() const;
+
+		void unbind() const;
 	};
 }
 

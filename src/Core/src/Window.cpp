@@ -29,7 +29,7 @@ namespace Retr0Engine
 	int Window::init()
 	{
         LOG_INFO("Initalize window with: [title->{0}]; [window resolution->{1}*{2}]", w_title, w_width, w_heigth);    
- 
+    
         if (!glfwInit()) {
             LOG_CRITICAL("Error to glfw initialize!");
             return -1;
@@ -61,6 +61,12 @@ namespace Retr0Engine
             return -4;
         }
         
+        auto shader_program = std::make_unique<Shader>("src\\Core\\shaders\\shader.frag", "src\\Core\\shaders\\shader.vert");
+
+       if (!shader_program->is_compiled()) {
+           return -5;
+       }
+
         return 0;
 	}
 
@@ -94,9 +100,9 @@ namespace Retr0Engine
 	{
         glClearColor(w_background[0], w_background[1], w_background[2], w_background[3]);      //specifies the values ​​for clearing the color of the color buffer.
         glClear(GL_COLOR_BUFFER_BIT);       //clearing the color buffer so that when drawing colors do not overlap each other
-        
-        gui_update();                    //gui update function
 
+        gui_update();                       //gui update function
+                                        //render objects
         glfwSwapBuffers(w_pWindow);
         glfwPollEvents();
 	}

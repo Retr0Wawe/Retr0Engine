@@ -46,6 +46,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE spdlog)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE glad)
+target_link_libraries(${PROJECT_NAME} PUBLIC glad)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Imgui)

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <memory>
 #include <Application.hpp>
-#include <Utils.hpp>
 #include <Shader.hpp>
 
 using namespace Retr0Engine;
