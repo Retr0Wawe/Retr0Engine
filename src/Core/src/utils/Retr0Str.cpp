@@ -11,7 +11,7 @@ namespace Retr0Engine
 		str[0] = '\0';
 	}
 
-	Retr0Str::Retr0Str(const char* _str)	//const char* str сам ставит в конце null terminator, и поэтому при new не нужно делать это вручную
+	Retr0Str::Retr0Str(const char* _str)	//const char* str пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ null terminator, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ new пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		if (_str != nullptr) {
 			length = strlen(_str) + 1;
@@ -77,7 +77,7 @@ namespace Retr0Engine
 		return Retr0Str(a) += b;
 	}
 
-	bool operator>(const Retr0Str & a, const Retr0Str& b) 
+	bool operator>(const Retr0Str & a, const Retr0Str& b)
 	{
 		return a.length > b.length;
 	}
@@ -99,17 +99,29 @@ namespace Retr0Engine
 
 	bool operator!=(const Retr0Str& a, const Retr0Str& b)
 	{
-		return ((a.length != b.length) && strcmp(a.str, b.str) != 0);
+		return (a.length != b.length) && strcmp(a.str, b.str) != 0;
 	}
 
 	bool operator==(const Retr0Str& a, const Retr0Str& b)
 	{
-		return (a.length == b.length) && (strcmp(a.str, b.str)) == 0;
+		return (a.length == b.length) && strcmp(a.str, b.str) == 0;
 	}
 
 	std::ostream& operator<<(std::ostream& out, const Retr0Str& b)
 	{
 		return out << b.str;
+	}
+
+	std::istream& operator>>(std::istream& inp, Retr0Str& b)
+	{
+		char temp[1024];
+		inp.get(temp, 1024);
+
+		if(inp) {
+			b = temp;
+		}
+
+		return inp;
 	}
 
 	char& Retr0Str::operator[](int i) const

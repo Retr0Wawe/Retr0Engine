@@ -28,13 +28,13 @@ namespace Retr0Engine
 
 	int Window::init()
 	{
-        LOG_INFO("Initalize window with: [title->{0}]; [window resolution->{1}*{2}]", w_title, w_width, w_heigth);    
-    
+        LOG_INFO("Initalize window with: [title->{0}]; [window resolution->{1}*{2}]", w_title, w_width, w_heigth);
+
         if (!glfwInit()) {
             LOG_CRITICAL("Error to glfw initialize!");
             return -1;
         }
-        
+
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -55,17 +55,11 @@ namespace Retr0Engine
         }
 
         callbacks_init();
-        
+
         if (gui_init(w_pWindow)) {
             LOG_CRITICAL("Error to imgui init! Error: {0}", error_code);
             return -4;
         }
-        
-        auto shader_program = std::make_unique<Shader>("src\\Core\\shaders\\shader.frag", "src\\Core\\shaders\\shader.vert");
-
-       if (!shader_program->is_compiled()) {
-           return -5;
-       }
 
         return 0;
 	}
@@ -73,7 +67,7 @@ namespace Retr0Engine
     void Window::callbacks_init() const
     {
         glfwSetKeyCallback(w_pWindow, key_callback);                    //key callback
-        glfwSetMouseButtonCallback(w_pWindow, mouse_button_callback);   //mouse button callback 
+        glfwSetMouseButtonCallback(w_pWindow, mouse_button_callback);   //mouse button callback
         glfwSetCursorPosCallback(w_pWindow, cursor_position_callback);  //cursor position callback
         glfwSetWindowCloseCallback(w_pWindow, window_close_callback);   //window close callback
         glfwSetWindowSizeCallback(w_pWindow, window_size_callback);     //window size callback
@@ -96,7 +90,7 @@ namespace Retr0Engine
         post_render();
     }
 
-	void Window::on_update() 
+	void Window::on_update()
 	{
         glClearColor(w_background[0], w_background[1], w_background[2], w_background[3]);      //specifies the values ​​for clearing the color of the color buffer.
         glClear(GL_COLOR_BUFFER_BIT);       //clearing the color buffer so that when drawing colors do not overlap each other
