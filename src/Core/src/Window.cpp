@@ -8,11 +8,20 @@
 
 namespace Retr0Engine
 {
-    float vertices[] = {
+    float points[] = {
     -0.5f, -0.5f, 0.0f,
      0.5f, -0.5f, 0.0f,
      0.0f,  0.5f, 0.0f
     };
+
+    float colors[] = {
+     0.5f, 0.0f, 0.0f,
+     0.0f, 0.0f, 0.0f,
+     0.0f, 0.0f, 1.0f
+    };
+
+    GLuint vao;
+    std::unique_ptr<Shader> shader;
 
     Window::Window(const char* _title, const unsigned int _width, const unsigned int _heigth) :
         w_title(_title), w_width(_width), w_heigth(_heigth), w_pWindow(nullptr)
@@ -61,6 +70,34 @@ namespace Retr0Engine
             return -4;
         }
 
+        shader = std::make_unique<Shader>("shaders/vertex.txt", "shaders/fragment.txt");
+
+        if (!shader->is_compiled()) {
+            LOG_CRITICAL("Error to compile shaders!");
+            return -5;
+        }
+
+        GLuint points_vbo, colors_vbo;
+        
+        glGenBuffers(1, &points_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
+        
+        glGenBuffers(1, &colors_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, colors_vbo);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
+
+        glGenVertexArrays(1, &vao);
+        glBindVertexArray(vao);
+
+        glEnableVertexAttribArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+        glEnableVertexAttribArray(1);
+        glBindBuffer(GL_ARRAY_BUFFER, colors_vbo);
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+
         return 0;
 	}
 
@@ -86,6 +123,7 @@ namespace Retr0Engine
         ImGui::Begin("Retr0Gui");   //init imgui window
 
         ImGui::ColorEdit4("Background color", w_background);    //imgui widget
+        ImGui::ColorEdit3("Object color", colors);
 
         post_render();
     }
@@ -94,9 +132,12 @@ namespace Retr0Engine
 	{
         glClearColor(w_background[0], w_background[1], w_background[2], w_background[3]);      //specifies the values ​​for clearing the color of the color buffer.
         glClear(GL_COLOR_BUFFER_BIT);       //clearing the color buffer so that when drawing colors do not overlap each other
+        
+        shader->bind();
+        glDrawArrays(GL_TRIANGLES, 0, 3);
 
         gui_update();                       //gui update function
-                                        //render objects
+                                            //render objects
         glfwSwapBuffers(w_pWindow);
         glfwPollEvents();
 	}
