@@ -2,7 +2,7 @@
 ## Simple 3d engine
 ### download: git clone https://github.com/Retr0Wawe/Retr0Engine --recursive
 # Minimal example:
-```
+```cpp
 #include <iostream>
 #include <Application.hpp>
 #include <Utils.hpp>
@@ -35,4 +35,4 @@ int main()
 
 	return app->start("Retr0Engine", 1000, 900);
 }
-```cpp
+```
