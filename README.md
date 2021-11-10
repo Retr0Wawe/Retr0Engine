@@ -9,13 +9,13 @@
 
 using namespace Retr0Engine;
 
-class Example : Application
+class ExampleApp : Application
 {
 public:
-	Example()
+	ExampleApp()
 	{	}
 
-	~Example()
+	~ExampleApp()
 	{	}
 
 	int start(const char* title, unsigned int w_weidth, unsigned int w_heigth) override
@@ -25,15 +25,15 @@ public:
 
 	void on_update() override
 	{
-		//std::cout << "LOl" << std::endl;
+		return;
 	}
 };
 
 int main()
 {
-	auto app = std::make_unique<Example>();
+	auto app = std::make_unique<ExampleApp>();
 
-	return app->start("Retr0Engine", 1000, 900);
+	app->start("Retr0Engine", 1100, 900);
 }
 ```
 ![engine](https://user-images.githubusercontent.com/74567717/140999870-7cbde40e-575e-4606-9bc5-45925bc77171.png)
