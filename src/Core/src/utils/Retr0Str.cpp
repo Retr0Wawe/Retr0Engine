@@ -11,7 +11,7 @@ namespace Retr0Engine
 		str[0] = '\0';
 	}
 
-	Retr0Str::Retr0Str(const char* _str)	//const char* str ��� ������ � ����� null terminator, � ������� ��� new �� ����� ������ ��� �������
+	Retr0Str::Retr0Str(const char* _str)
 	{
 		if (_str != nullptr) {
 			length = strlen(_str) + 1;

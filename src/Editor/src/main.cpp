@@ -1,18 +1,16 @@
 #include <iostream>
-#include <memory>
 #include <Application.hpp>
 #include <Utils.hpp>
-#include <Shader.hpp>
 
 using namespace Retr0Engine;
 
-class MyApp : Application
+class ExampleApp : Application
 {
 public:
-	MyApp()
+	ExampleApp()
 	{	}
 
-	~MyApp()
+	~ExampleApp()
 	{	}
 
 	int start(const char* title, unsigned int w_weidth, unsigned int w_heigth) override
@@ -28,7 +26,7 @@ public:
 
 int main()
 {
-	auto app = std::make_unique<MyApp>();
+	auto app = std::make_unique<ExampleApp>();
 
-	return app->start("Retr0Engine", 1000, 900);
+	app->start("Retr0Engine", 1100, 900);
 }

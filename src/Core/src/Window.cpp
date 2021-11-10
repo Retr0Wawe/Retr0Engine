@@ -8,19 +8,20 @@
 
 namespace Retr0Engine
 {
-    float points[] = {
+    float points[] = {              
     -0.5f, -0.5f, 0.0f,
      0.5f, -0.5f, 0.0f,
      0.0f,  0.5f, 0.0f
     };
 
     float colors[] = {
-     0.5f, 0.0f, 0.0f,
-     0.0f, 0.0f, 0.0f,
-     0.0f, 0.0f, 1.0f
+    0.5f, 0.0f, 0.0f,
+    0.0f, 0.0f, 0.0f,
+    0.0f, 0.0f, 1.0f
     };
 
     GLuint vao;
+
     std::unique_ptr<Shader> shader;
 
     Window::Window(const char* _title, const unsigned int _width, const unsigned int _heigth) :
@@ -70,15 +71,15 @@ namespace Retr0Engine
             return -4;
         }
 
-        shader = std::make_unique<Shader>("shaders/vertex.txt", "shaders/fragment.txt");
+        shader = std::make_unique<Shader>("shaders/vertex.txt", "shaders/fragment.txt");    //shaders load
 
-        if (!shader->is_compiled()) {
-            LOG_CRITICAL("Error to compile shaders!");
+        if (shader->init_shader_program()) {
+            LOG_CRITICAL("Error to init shader program! Error: {0}", shader->error_code);
             return -5;
         }
-
+        //hide gen buffers
         GLuint points_vbo, colors_vbo;
-        
+
         glGenBuffers(1, &points_vbo);
         glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
         glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
@@ -123,22 +124,25 @@ namespace Retr0Engine
         ImGui::Begin("Retr0Gui");   //init imgui window
 
         ImGui::ColorEdit4("Background color", w_background);    //imgui widget
-        ImGui::ColorEdit3("Object color", colors);
 
         post_render();
     }
 
 	void Window::on_update()
 	{
+        //start = std::chrono::steady_clock::now();     //write a count of the execution time of a frame in milliseconds
+
         glClearColor(w_background[0], w_background[1], w_background[2], w_background[3]);      //specifies the values ​​for clearing the color of the color buffer.
         glClear(GL_COLOR_BUFFER_BIT);       //clearing the color buffer so that when drawing colors do not overlap each other
-        
+
         shader->bind();
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
-        gui_update();                       //gui update function
-                                            //render objects
-        glfwSwapBuffers(w_pWindow);
-        glfwPollEvents();
-	}
+        this->gui_update();                       //gui update function
+                                          
+        glfwSwapBuffers(w_pWindow);               
+        glfwPollEvents();                         //update callbacks in every frame
+	    
+        //end = std::chrono::steady_clock::now(); 
+    }
 }

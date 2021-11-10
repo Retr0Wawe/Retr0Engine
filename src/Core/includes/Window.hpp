@@ -1,6 +1,8 @@
 #ifndef WIN_HPP
 #define WIN_HPP
 
+#include <chrono>
+
 #include "ImGuiLayer.hpp"
 
 namespace Retr0Engine
@@ -17,6 +19,9 @@ namespace Retr0Engine
 	private:
 		int init();
 		void shutdown() const;
+	public:
+		std::chrono::steady_clock::time_point start;
+		std::chrono::steady_clock::time_point end;
 	public:
 		Window(const char* _title, const unsigned int _width, const unsigned int _heigth);
 

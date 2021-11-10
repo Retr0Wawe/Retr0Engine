@@ -8,10 +8,12 @@ namespace Retr0Engine
 {
 	class Shader
 	{
-	private:						//потом сделать private, так как создание шейдеров будет проходить внутри методов класса
+	private:					
 		std::string vertex_code;
 		std::string fragment_code;
+	public:
 		unsigned int shader_id;
+		int error_code;
 	public:
 		Shader(const char* vertex_path, const char* fragment_path);
 
@@ -27,7 +29,7 @@ namespace Retr0Engine
 	public:
 		bool create_shader(const char* source, const GLenum shader_type, GLuint& shader_id);
 
-		bool is_compiled() const;
+		int init_shader_program();
 
 		void bind() const;
 
