@@ -20,7 +20,7 @@ public:
 
 	void on_update() override
 	{
-		//std::cout << "LOl" << std::endl;
+		return;
 	}
 };
 

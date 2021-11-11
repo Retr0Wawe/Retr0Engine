@@ -6,7 +6,7 @@
 
 namespace Retr0Engine
 {
-	class VertexBuffer
+	class VertexBuffer	//overload copy constructor and assignment operator
 	{
 	private:
 		GLuint vbo;
@@ -22,6 +22,13 @@ namespace Retr0Engine
 
 		virtual ~VertexBuffer();
 
+		VertexBuffer(const VertexBuffer&) = delete;
+
+		VertexBuffer(const VertexBuffer&&) = delete;
+
+		VertexBuffer& operator=(const VertexBuffer&) = delete;
+
+		VertexBuffer& operator=(VertexBuffer&&) = delete;
 	public:
 		GLenum draw_method(DrawMethods method) const;
 
