@@ -43,7 +43,7 @@ namespace Retr0Engine
 		glUseProgram(shader_id);
 	}
 
-	void Shader::unbind() const
+	void Shader::unbind() 
 	{
 		glUseProgram(0);
 	}

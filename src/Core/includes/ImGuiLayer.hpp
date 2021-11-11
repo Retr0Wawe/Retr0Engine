@@ -22,7 +22,7 @@ namespace Retr0Engine
 		ImGuiLayer& operator=(const ImGuiLayer&) = delete;
 		ImGuiLayer& operator=(const ImGuiLayer&&) = delete;
 	public:
-		int gui_init(GLFWwindow* p_window);
+		virtual int gui_init(GLFWwindow* p_window);
 
 		virtual void gui_destroy() const;
 

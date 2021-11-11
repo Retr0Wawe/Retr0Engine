@@ -5,6 +5,7 @@
 #include "Log.hpp"
 #include "Callback.hpp"
 #include "Shader.hpp"
+#include "VertexBuffer.hpp"
 
 namespace Retr0Engine
 {
@@ -23,6 +24,8 @@ namespace Retr0Engine
     GLuint vao;
 
     std::unique_ptr<Shader> shader;
+    std::unique_ptr<VertexBuffer> points_vbo;
+    std::unique_ptr<VertexBuffer> colors_vbo;
 
     Window::Window(const char* _title, const unsigned int _width, const unsigned int _heigth) :
         w_title(_title), w_width(_width), w_heigth(_heigth), w_pWindow(nullptr)
@@ -77,26 +80,23 @@ namespace Retr0Engine
             LOG_CRITICAL("Error to init shader program! Error: {0}", shader->error_code);
             return -5;
         }
-        //hide gen buffers
-        GLuint points_vbo, colors_vbo;
 
-        glGenBuffers(1, &points_vbo);
-        glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
+        points_vbo = std::make_unique<VertexBuffer>(points, sizeof(points), VertexBuffer::DrawMethods::STATIC);
+        colors_vbo = std::make_unique<VertexBuffer>(colors, sizeof(points), VertexBuffer::DrawMethods::STATIC);
         
-        glGenBuffers(1, &colors_vbo);
-        glBindBuffer(GL_ARRAY_BUFFER, colors_vbo);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
-
         glGenVertexArrays(1, &vao);
         glBindVertexArray(vao);
 
         glEnableVertexAttribArray(0);
-        glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
+
+        points_vbo->bind();
+        
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
         glEnableVertexAttribArray(1);
-        glBindBuffer(GL_ARRAY_BUFFER, colors_vbo);
+        
+        colors_vbo->bind();
+
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
         return 0;

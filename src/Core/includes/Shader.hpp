@@ -33,7 +33,7 @@ namespace Retr0Engine
 
 		void bind() const;
 
-		void unbind() const;
+		static void unbind();
 	};
 }
 

@@ -21,6 +21,7 @@ set(PUBLIC_INCLUDES
 	includes/Window.hpp
 	includes/Utils.hpp
 	includes/ImGuiLayer.hpp
+	includes/VertexBuffer.hpp
 )
 
 set(PRIVATE_SOURCES
@@ -29,6 +30,7 @@ set(PRIVATE_SOURCES
 	src/Callback.cpp
 	src/Shader.cpp
 	src/ImGuiLayer.cpp
+	src/VertexBuffer.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC
