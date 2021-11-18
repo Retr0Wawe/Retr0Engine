@@ -22,7 +22,7 @@ namespace Retr0Engine
 
 		Retr0Str& operator+=(const Retr0Str&);
 
-		friend Retr0Str operator+(Retr0Str&, const Retr0Str&);
+		friend const Retr0Str operator+(Retr0Str&, const Retr0Str&);
 
 		friend bool operator>(const Retr0Str&, const Retr0Str&);
 

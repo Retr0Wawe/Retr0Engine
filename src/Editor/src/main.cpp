@@ -20,7 +20,7 @@ public:
 
 	void on_update() override
 	{
-		return;
+		
 	}
 };
 

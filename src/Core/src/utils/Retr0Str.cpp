@@ -72,7 +72,7 @@ namespace Retr0Engine
 		return *this;
 	}
 
-	Retr0Str operator+(Retr0Str& a, const Retr0Str& b)
+	const Retr0Str operator+(Retr0Str& a, const Retr0Str& b)
 	{
 		return Retr0Str(a) += b;
 	}

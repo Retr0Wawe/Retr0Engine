@@ -81,6 +81,8 @@ namespace Retr0Engine
             return -5;
         }
 
+        glfwSwapInterval(1);
+
         points_vbo = std::make_unique<VertexBuffer>(points, sizeof(points), VertexBuffer::DrawMethods::STATIC);
         colors_vbo = std::make_unique<VertexBuffer>(colors, sizeof(points), VertexBuffer::DrawMethods::STATIC);
         
@@ -142,7 +144,6 @@ namespace Retr0Engine
                                           
         glfwSwapBuffers(w_pWindow);               
         glfwPollEvents();                         //update callbacks in every frame
-	    
         //end = std::chrono::steady_clock::now(); 
     }
 }
