@@ -23,8 +23,7 @@ namespace Retr0Engine
         while (!a_Close_window && !result_code)
         {
             pWindow->on_update();
-            this->on_update();      //if you have 144ghz monitor, you need rewrite this function args to (1s / 144.0)
-            //std::this_thread::sleep_for(duration_cast<milliseconds>(1s / 60.0));
+            this->on_update();
         }
 
         return -1;

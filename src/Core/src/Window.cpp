@@ -92,7 +92,7 @@ namespace Retr0Engine
         glEnableVertexAttribArray(0);
 
         points_vbo->bind();
-        
+
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
         glEnableVertexAttribArray(1);
@@ -132,18 +132,15 @@ namespace Retr0Engine
 
 	void Window::on_update()
 	{
-        //start = std::chrono::steady_clock::now();     //write a count of the execution time of a frame in milliseconds
-
         glClearColor(w_background[0], w_background[1], w_background[2], w_background[3]);      //specifies the values ​​for clearing the color of the color buffer.
         glClear(GL_COLOR_BUFFER_BIT);       //clearing the color buffer so that when drawing colors do not overlap each other
 
         shader->bind();
         glDrawArrays(GL_TRIANGLES, 0, 3);
-
+        
         this->gui_update();                       //gui update function
                                           
         glfwSwapBuffers(w_pWindow);               
         glfwPollEvents();                         //update callbacks in every frame
-        //end = std::chrono::steady_clock::now(); 
     }
 }

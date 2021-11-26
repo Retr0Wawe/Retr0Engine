@@ -20,16 +20,16 @@ namespace Retr0Engine
 	public:
 		VertexBuffer(const void* data,const int size, DrawMethods draw_method);
 
-		virtual ~VertexBuffer();
+		VertexBuffer(const VertexBuffer&);
 
-		VertexBuffer(const VertexBuffer&) = delete;
+		virtual ~VertexBuffer();
 
 		VertexBuffer(const VertexBuffer&&) = delete;
 
-		VertexBuffer& operator=(const VertexBuffer&) = delete;
-
 		VertexBuffer& operator=(VertexBuffer&&) = delete;
 	public:
+		VertexBuffer& operator=(const VertexBuffer&);
+
 		GLenum draw_method(DrawMethods method) const;
 
 		void bind() const;

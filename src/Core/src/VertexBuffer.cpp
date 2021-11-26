@@ -9,9 +9,20 @@ namespace Retr0Engine
 		glBufferData(GL_ARRAY_BUFFER, size, data, draw_method(method));
 	}
 
+	VertexBuffer::VertexBuffer(const VertexBuffer& a)
+	{
+		this->vbo = a.vbo;
+	}
+
 	VertexBuffer::~VertexBuffer()
 	{
 		glDeleteBuffers(1, &vbo);
+	}
+
+	VertexBuffer& VertexBuffer::operator=(const VertexBuffer& a)
+	{
+		this->vbo = a.vbo;
+		return *this;
 	}
 
 	GLenum VertexBuffer::draw_method(DrawMethods method) const
