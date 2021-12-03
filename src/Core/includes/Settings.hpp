@@ -7,6 +7,9 @@ namespace Retr0Engine
 {
 	class Settings
 	{
+	public:
+
+	private:
 
 	};
 }

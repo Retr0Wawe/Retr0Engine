@@ -54,3 +54,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE spdlog)
 target_link_libraries(${PROJECT_NAME} PRIVATE glad)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE build_libs)
+
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/build/Debug/shaders)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/shaders/fragment.txt ${CMAKE_BINARY_DIR}/build/Debug/shaders COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/shaders/vertex.txt ${CMAKE_BINARY_DIR}/build/Debug/shaders COPYONLY)

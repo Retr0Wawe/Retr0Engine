@@ -1,6 +1,5 @@
 #include <fstream>
 #include <sstream>
-#include <filesystem>
 #include <iostream>
 
 #include "Shader.hpp"
