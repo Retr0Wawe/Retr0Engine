@@ -22,6 +22,7 @@ set(PUBLIC_INCLUDES
 	includes/Utils.hpp
 	includes/ImGuiLayer.hpp
 	includes/VertexBuffer.hpp
+	includes/Settings.hpp
 )
 
 set(PRIVATE_SOURCES
@@ -31,6 +32,7 @@ set(PRIVATE_SOURCES
 	src/Shader.cpp
 	src/ImGuiLayer.cpp
 	src/VertexBuffer.cpp
+	src/Settings.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC
@@ -43,6 +45,7 @@ add_library(${PROJECT_NAME} STATIC
 target_include_directories(${PROJECT_NAME} PRIVATE includes/private_includes)
 target_include_directories(${PROJECT_NAME} PUBLIC includes)
 target_include_directories(${PROJECT_NAME} PRIVATE src)
+target_include_directories(${PROJECT_NAME} PUBLIC ../../vendor/json/single_include/nlohmann)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
 
@@ -50,4 +53,4 @@ target_link_libraries(${PROJECT_NAME} PRIVATE spdlog)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE glad)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Imgui)
+target_link_libraries(${PROJECT_NAME} PRIVATE build_libs)

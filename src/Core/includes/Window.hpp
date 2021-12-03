@@ -20,9 +20,6 @@ namespace Retr0Engine
 		int init();
 		void shutdown() const;
 	public:
-		std::chrono::steady_clock::time_point start;
-		std::chrono::steady_clock::time_point end;
-	public:
 		Window(const char* _title, const unsigned int _width, const unsigned int _heigth);
 
 		~Window();
@@ -39,9 +36,9 @@ namespace Retr0Engine
 
 		void callbacks_init() const;
 
-		void gui_update() override;
-
 		void on_update();
+
+		virtual void gui_update() override;
 	};
 }
 
