@@ -2,8 +2,6 @@
 #include "Window.hpp"
 #include "Log.hpp"
 
-using namespace std::chrono;
-
 namespace Retr0Engine
 {
     Application::Application()
