@@ -11,8 +11,8 @@ namespace Retr0Engine
 	private:					
 		std::string vertex_code;
 		std::string fragment_code;
-	public:
 		unsigned int shader_id;
+	public:
 		int error_code;
 	public:
 		Shader(const char* vertex_path, const char* fragment_path);
@@ -27,13 +27,13 @@ namespace Retr0Engine
 		Shader& operator=(const Shader&) = delete;
 		Shader& operator=(const Shader&&) = delete;
 	public:
-		bool create_shader(const char* source, const GLenum shader_type, GLuint& shader_id);
+		virtual bool create_shader(const char* source, const GLenum shader_type, GLuint& shader_id);
 
-		int init_shader_program();
+		virtual int init_shader_program();
 
-		void bind() const;
+		virtual void bind() const;
 
-		static void unbind();
+		virtual void unbind();
 	};
 }
 

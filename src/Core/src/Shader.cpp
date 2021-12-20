@@ -55,17 +55,14 @@ namespace Retr0Engine
 		if (!create_shader(vertex_code.c_str(), GL_VERTEX_SHADER, vertex_id)) {
 			LOG_CRITICAL("Vertex shader compile error!");
 			glDeleteShader(vertex_id);
-			error_code = -2;
-			return error_code;
+			return error_code = -2;
 		}
 
 		if (!create_shader(fragment_code.c_str(), GL_FRAGMENT_SHADER, fragment_id)) {
 			LOG_CRITICAL("Fragment shader compile error!");
 			glDeleteShader(vertex_id);
 			glDeleteShader(fragment_id);
-
-			error_code = -3;
-			return error_code;
+			return error_code = -3;
 		}
 
 		shader_id = glCreateProgram();
@@ -89,8 +86,7 @@ namespace Retr0Engine
 			glDeleteShader(vertex_id);
 			glDeleteShader(fragment_id);
 
-			error_code = -4;
-			return error_code;
+			return error_code = -4;
 		}
 
 		glDetachShader(shader_id, vertex_id);
@@ -99,7 +95,7 @@ namespace Retr0Engine
 		glDeleteShader(vertex_id);
 		glDeleteShader(fragment_id);
 
-		return 0;
+		return error_code;
 	}
 
 	bool Shader::create_shader(const char* source, const GLenum shader_type, GLuint& shader_id)

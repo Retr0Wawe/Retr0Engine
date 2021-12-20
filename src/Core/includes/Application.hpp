@@ -22,7 +22,7 @@ namespace Retr0Engine
 		Application& operator=(const Application&) = delete;
 		Application& operator=(const Application&&) = delete;
 	public:
-		virtual int start(const char* title, unsigned int w_weidth, unsigned int w_heigth);
+		int start(const char* title, std::size_t w_weidth, std::size_t w_heigth);
 
 		virtual void on_update();
 	};

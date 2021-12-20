@@ -14,7 +14,7 @@ namespace Retr0Engine
         LOG_INFO("Application has been closed!");
     }
 
-    int Application::start(const char* title, unsigned int w_weidth, unsigned int w_heigth)
+    int Application::start(const char* title, std::size_t w_weidth, std::size_t w_heigth)
     {
         pWindow = std::make_unique<Window>(title, w_weidth, w_heigth);
 
@@ -27,8 +27,5 @@ namespace Retr0Engine
         return -1;
     }
 
-    void Application::on_update()
-    {
-        return;
-    }
+    void Application::on_update(){  }
 }

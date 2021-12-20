@@ -15,13 +15,11 @@ namespace Retr0Engine
 		ImGuiIO& io = ImGui::GetIO();
 
 		if (!ImGui_ImplOpenGL3_Init("#version 300 es")) {
-			error_code = -1;
-			return error_code;
+			return error_code = -1;
 		}
 
 		if (!ImGui_ImplGlfw_InitForOpenGL(p_window, true)) {
-			error_code = -2;
-			return error_code;
+			return error_code = -2;
 		}
 	
 		return error_code;

@@ -14,7 +14,7 @@ namespace Retr0Engine
 	private:
 		unsigned int w_width, w_heigth;
 		const char* w_title;
-		struct GLFWwindow* w_pWindow;
+		GLFWwindow* w_pWindow;
 		float w_background[4] = { 0.f, 0.f, 0.f };
 	private:
 		int init();
@@ -30,11 +30,17 @@ namespace Retr0Engine
 		Window& operator=(const Window&) = delete;
 		Window& operator=(const Window&&) = delete;
 	public:
-		unsigned int get_width() const { return w_width; }
+		unsigned int get_width() const noexcept
+		{ 
+			return w_width; 
+		}
 
-		unsigned int get_heigth() const { return w_heigth; }
+		unsigned int get_heigth() const noexcept
+		{ 
+			return w_heigth; 
+		}
 
-		void callbacks_init() const;
+		void callbacks_init() const noexcept;
 
 		void on_update();
 

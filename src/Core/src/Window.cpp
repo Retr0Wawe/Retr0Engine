@@ -70,7 +70,7 @@ namespace Retr0Engine
         callbacks_init();
 
         if (gui_init(w_pWindow)) {
-            LOG_CRITICAL("Error to imgui init! Error: {0}", error_code);
+            LOG_CRITICAL("Error to imgui init! Error: {0}", ImGuiLayer::error_code);
             return -4;
         }
 
@@ -104,7 +104,7 @@ namespace Retr0Engine
         return 0;
 	}
 
-    void Window::callbacks_init() const
+    void Window::callbacks_init() const noexcept
     {
         glfwSetKeyCallback(w_pWindow, key_callback);                    //key callback
         glfwSetMouseButtonCallback(w_pWindow, mouse_button_callback);   //mouse button callback
