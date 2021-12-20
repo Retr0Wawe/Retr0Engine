@@ -11,7 +11,7 @@ namespace Retr0Engine
 	private:					
 		std::string vertex_code;
 		std::string fragment_code;
-		unsigned int shader_id;
+		GLuint shader_id;
 	public:
 		int error_code;
 	public:

@@ -16,9 +16,9 @@ namespace Retr0Engine
     };
 
     float colors[] = {
-    0.5f, 0.0f, 0.0f,
-    0.0f, 0.0f, 0.0f,
-    0.0f, 0.0f, 1.0f
+     0.5f, 0.0f, 0.0f,
+     0.0f, 0.0f, 0.0f,
+     0.0f, 0.0f, 1.0f
     };
 
     GLuint vao;
@@ -27,7 +27,7 @@ namespace Retr0Engine
     std::unique_ptr<VertexBuffer> points_vbo;
     std::unique_ptr<VertexBuffer> colors_vbo;
 
-    Window::Window(const char* _title, const unsigned int _width, const unsigned int _heigth) :
+    Window::Window(const char* _title, const uint32_t _width, const uint32_t _heigth) :
         w_title(_title), w_width(_width), w_heigth(_heigth), w_pWindow(nullptr)
 	{
         result_code = init();

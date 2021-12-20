@@ -18,7 +18,7 @@ namespace Retr0Engine
 			STREAM
 		};
 	public:
-		VertexBuffer(const void* data,const int size, DrawMethods draw_method);
+		VertexBuffer(const void* data, const int size, DrawMethods draw_method);
 
 		VertexBuffer(const VertexBuffer&);
 
